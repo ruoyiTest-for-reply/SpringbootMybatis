@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--<h2 th:text="${user.username}">用户</h2>-->
+    <!--<h2 th:text="${user.address}">地址</h2>-->
+
+    <!--<div th:object="${user}">-->
+        <!--<p th:text="|姓名:*{username}|">姓名</p>-->
+        <!--<p th:text="*{gender}">性别</p>-->
+        <!--<p th:text="*{birthday}">生日</p>-->
+        <!--<p th:text="*{address}">地址</p>-->
+        <!--<input type="text" th:value="*{id}">-->
+        <!--<p th:with="sname=(*{gender}=='女'?'female':'male')">-->
+            <!--<span th:text="${sname}"></span>-->
+        <!--</p>-->
+    <!--</div>-->
+
+    <div th:each="user,status:${users}">
+        <div th:switch="${user.gender}">
+            <span th:case="男">大侠</span>
+            <span th:case="女">师太</span>
+        </div>
+
+        <h4 th:text="${status.count}"></h4>
+        <h5 th:text="${user.username}"></h5>
+        <h5 th:text="${user.gender}"></h5>
+        <h5 th:text="${user.birthday}"></h5>
+        <h5 th:text="${user.address}"></h5>
+        <a href="" th:if="${user.address=='华山'}">地址</a>
+        <a th:href="@{/hello/index/6}" th:unless="${user == null}">查询</a>
+        <hr>
+
+    </div>
+</body>
+</html>
